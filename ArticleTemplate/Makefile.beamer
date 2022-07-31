@@ -1,0 +1,61 @@
+MAKEFLAGS += --warn-undefined-variables
+SHELL := bash
+.SHELLFLAGS := -eu -o pipefail -c
+.DEFAULT_GOAL := ps
+.DELETE_ON_ERROR:
+.SUFFIXES:
+
+name = beamer_presentation
+bibname = $(HOME)/texmf/bibtex/bib/Bibliography.bib
+# bibname = $(name).bib
+diapics := $(wildcard *.dia)
+pics := $(wildcard *.eps)
+deps = $(name).tex $(bibname) $(diapics:.dia=.eps) $(pics)
+
+.PHONY: pdf ps dvi bib
+
+pdf: $(name).pdf
+
+ps: $(name).ps
+
+dvi: $(name).dvi
+
+# This is to make a smaller bibliography file that only includes what's in the .tex
+# There is no dependency here since adding a dependency on the .dvi would be circular. Just make
+# sure to run `make dvi` first before generating a new .bib file
+bib:
+	bibexport -o $(name).bib $(name).aux
+
+$(name).pdf: $(deps) $(name).ps
+	# Use this first command to compile directly to .pdf:
+	# latexmk $(name) -pdfps
+	ps2pdf $(name).ps
+
+$(name).ps: $(deps) $(name).dvi
+	# Use this first command to compile directly to .ps:
+	# latexmk $(name) -ps -pdf-
+	dvips $(name)
+
+$(name).dvi: $(deps)
+	latexmk $(name) -dvi -ps- -pdf-
+
+$(diapics:.dia=.eps): $(diapics)
+	for diafile in $(diapics:.dia=); \
+	do \
+		dia --export=$$diafile.eps $$diafile.dia; \
+	done
+
+.PHONY: cleansome cleanmore cleanbib clean
+
+cleanbib:
+	rm -f $(name).bib
+
+cleansome:
+	rm -f $(name).fls $(name).blg $(name).bbl $(name).log $(name).aux $(name).nav $(name).out $(name).snm $(name).toc $(name).fdb_latexmk $(name)*~
+	rm -Rf auto
+
+cleanmore: cleansome
+	rm -f $(name).dvi $(name).ps *eps-converted-to*.pdf $(diapics:.dia=.eps) $(name).bib-save* $(lastword $(MAKEFILE_LIST))~
+
+clean: cleanmore
+	rm -f $(name).pdf $(name).ps $(name).dvi

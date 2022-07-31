@@ -1,0 +1,305 @@
+\documentclass{beamer}
+% use the handout option to collapse delay elements (uncover, only, etc).
+%\documentclass[handout]{beamer}
+
+\setbeameroption{hide notes}
+%\setbeameroption{show notes}
+%\setbeameroption{show only notes}
+
+% remove navigation markers
+\setbeamertemplate{navigation symbols}{}
+
+% show not yet uncovered items slightly
+%\beamertemplatetransparentcoveredmedium
+
+% include frame numbers at the bottom of the frame
+\setbeamertemplate{footline}[frame number]
+
+% plain notes
+\setbeamertemplate{note page}[plain]
+
+% good plain jane themes:
+\usetheme{default}
+%\usetheme{Boadilla}
+
+% good themes to show circles on the top bar
+%\usetheme{Darmstadt}
+%\usetheme{Frankfurt} % no subsections shown (more space)
+
+% good theme for side bar
+%\usetheme{Marburg}
+
+% change emphasis to underline, plus other useful functions
+\usepackage[normalem]{ulem}
+
+% for nicer columns than the default
+\usepackage{multicol}
+
+% for bibliography:
+\usepackage{natbib}
+
+% font:
+\usepackage{euler} % for ``blackboard'' style math fonts
+\usefonttheme[onlymath]{serif}
+
+% more or less indispensable when using math
+\usepackage{amsmath}
+
+% extra math fonts
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{dsfont}
+
+% essential if using the includegraphics command:
+\usepackage{graphicx}
+
+% used to put frames around images:
+\usepackage{framed}
+
+% essential:
+\usepackage[english]{babel}
+
+% for customised enumerates and itemizes
+\usepackage{enumitem}
+
+% quantum circuit diagrams
+\usepackage{qcircuit}
+
+\newcommand\xgatefull{%
+  \Qcircuit @C=1.5em @R=.8em @! {
+    \lstick{| 0 \rangle} & \gate{X} & \rstick{| 1 \rangle} \qw \\
+    \lstick{| 1 \rangle} & \gate{X} & \rstick{| 0 \rangle} \qw}}
+
+\newcommand\ygatefull{%
+  \Qcircuit @C=1.5em @R=.8em @! {
+    \lstick{| 0 \rangle} & \gate{Y} & \rstick{i| 1 \rangle} \qw \\
+    \lstick{| 1 \rangle} & \gate{Y} & \rstick{-i| 0 \rangle} \qw}}
+
+\newcommand\zgatefull{%
+  \Qcircuit @C=1.5em @R=.8em @! {
+    \lstick{| 0 \rangle} & \gate{Z} & \rstick{| 0 \rangle} \qw \\
+    \lstick{| 1 \rangle} & \gate{Z} & \rstick{-| 1 \rangle} \qw}}
+
+\newcommand\rphasegatefull{%
+  \Qcircuit @C=1.5em @R=.8em @! {
+    \lstick{| 0 \rangle} & \gate{R} & \rstick{| 0 \rangle} \qw \\
+    \lstick{| 1 \rangle} & \gate{R} & \rstick{i| 1 \rangle} \qw}}
+
+\newcommand\sphasegatefull{%
+  \Qcircuit @C=1.5em @R=.8em @! {
+    \lstick{| 0 \rangle} & \gate{S} & \rstick{| 0 \rangle} \qw \\
+    \lstick{| 1 \rangle} & \gate{S} & \rstick{e^{i\pi/4}| 1 \rangle} \qw}}
+
+\newcommand\hgatefull{%
+  \Qcircuit @C=1.5em @R=.8em @! {
+    \lstick{| 0 \rangle} & \gate{H} & \rstick{\frac{| 0 \rangle + | 1 \rangle}{\sqrt 2}} \qw \\
+    \lstick{| 1 \rangle} & \gate{H} & \rstick{\frac{| 0 \rangle - | 1 \rangle}{\sqrt 2}} \qw}}
+
+\newcommand\igate{%
+  \Qcircuit @C=0.1em @R=.1em @! {
+    & \gate{I} & \qw}}
+
+\newcommand\xgate{%
+  \Qcircuit @C=0.1em @R=.1em @! {
+    & \gate{X} & \qw}}
+
+\newcommand\ygate{%
+  \Qcircuit @C=0.1em @R=.1em @! {
+    & \gate{Y} & \qw}}
+
+\newcommand\zgate{%
+  \Qcircuit @C=0.1em @R=.1em @! {
+    & \gate{Z} & \qw}}
+
+\newcommand\rphasegate{%
+  \Qcircuit @C=0.1em @R=.1em @! {
+    & \gate{R} & \qw}}
+
+\newcommand\sphasegate{%
+  \Qcircuit @C=0.1em @R=.1em @! {
+    & \gate{S} & \qw}}
+
+\newcommand\hgate{%
+  \Qcircuit @C=0.1em @R=.1em @! {
+    & \gate{H} & \qw}}
+
+\newcommand\cnotgate{%
+  \Qcircuit @C=.1em @R=.1em @! {
+    & \ctrl{1} & \qw \\
+    & \targ & \qw}}
+
+\newcommand\toffoligate{%
+  \Qcircuit @C=.2em @R=.2em @! {
+    & \ctrl{1} & \qw \\
+    & \ctrl{1} & \qw \\
+    & \targ & \qw}}
+
+\newcommand\measgate{%
+  \Qcircuit @C=1.5em @R=.8em @! {
+    & \meter}}
+
+% For some reason, arXiv needs this (possibly it is no longer necessary):
+% \renewcommand{\Qcircuit}[1][0em]{\xymatrix @*=<#1>}
+
+% for customised enumerates and itemizes
+\usepackage{enumitem}
+
+% useful fraction macros
+\newcommand\frachalf{%
+  \frac{1}{2}}
+
+\newcommand\fracroot{%
+  \textstyle{\frac{1}{\sqrt 2}}}
+
+% for nicer fractions
+\usepackage{nicefrac}
+
+% extra highlighting colours:
+\definecolor{neongreen}{RGB}{57,255,20}
+\definecolor{medgrey}{RGB}{169,169,169}
+\definecolor{lightgrey}{RGB}{232,232,232}
+\definecolor{darkslategrey}{RGB}{47,79,79}
+
+% background colour customisation
+\setbeamercolor{background canvas}{bg=darkslategrey}
+
+% have a blackboard image for your background instead (use the keepaspectratio
+% option to not have image over the footer). Note that you must copy (or
+% softlink to) the blackboard.eps file located inside the ~/texmf/tex/latex/
+% directory.
+%\setbeamertemplate{background}{\includegraphics[
+%    width=\paperwidth,
+%    height=\paperheight]{blackboard}}
+
+% set text colors for different objects
+\setbeamercolor{frametitle}{fg=white}
+\setbeamercolor{structure}{fg=white}
+\setbeamercolor{normal text}{fg=white}
+\setbeamercolor{example text}{fg=white}
+%\setbeamerfont{alerted text}{series=\bfseries}
+\setbeamercolor{alerted text}{fg=yellow}
+
+% Extra highlighting commands
+\usepackage{color}
+\newcommand{\shade}[1] {%
+  {\color{medgrey} #1}}
+
+\usepackage{color}
+\newcommand{\lightshade}[1] {%
+  {\color{lightgrey} #1}}
+
+\begin{document}
+
+\title[]{Putting Probabilities First: How Hilbert Space Generates and
+  Constrains Them}
+\author[M. Cuffaro]{Michael Cuffaro{\color{lightgrey}\inst{1,2,3}}}
+\institute[]{%
+  \color{lightgrey}
+  \inst{1} Rotman Institute of Philosophy, University of Western Ontario\\[2pt]%
+  \inst{2} Munich Center for Mathematical Philosophy, LMU Munich\\[2pt]%
+  \inst{3} Institute for Quantum Optics and Quantum Information Vienna}
+\date{\mbox{ } \\[20pt] March 11, 2019}
+
+
+\begin{frame}[plain,noframenumbering]
+\titlepage
+\insertsubtitle{
+  \begin{center}
+    Politecnico di Milano, Milan, Italy\\[10pt]
+    {\scriptsize\normalem \emph{\color{medgrey}{Powered by \LaTeX}}}
+  \end{center}}
+\end{frame}
+
+\section*{First Section}
+
+\subsection*{1}
+\begin{frame}
+\frametitle{Goals of this paper}
+\begin{itemize}
+\item Clarify Wittgenstein's views on probability statements.
+\item Defend Wittgenstein's views against misunderstandings.
+\item Point out the limitations of Wittgenstein's conception.
+\end{itemize}
+\end{frame}
+
+\subsection*{2}
+\begin{frame}
+\frametitle{Classical interpretation of Probability (Laplace, 1825)}
+\begin{itemize}
+\item Principle of Insufficient Reason (a.k.a. Principle of Indifference)
+  \begin{itemize}
+  \item If there is no reason to prefer one outcome over another, all are
+    considered equally probable.
+  \end{itemize}
+\item Definition: $P = \frac{\mbox{\# favourable cases}}{\mbox{\# total
+    cases}}$
+\item Problems
+  \begin{itemize}
+  \item For a biased die the outcomes are not equally probable.
+  \item Problem: The probability of death for a 40 year old insurance salesman
+    is 0.011. How is this defined? Which are the favourable outcomes? Which are
+    the total possible cases?
+  \end{itemize}
+\end{itemize}
+\note{GNU Emacs is the most popular and widely used of the Emacs family of text
+  editors. It is also the most powerful and flexible. Unlike other text
+  editors, GNU Emacs is a complete working environment\textemdash you can stay
+  within Emacs all day without leaving.}
+\end{frame}
+
+\subsection*{3}
+\begin{frame}
+\frametitle{Frequentist Interpretation of Probability (Ellis, Venn, von Mises)}
+\begin{itemize}
+\item Probability is defined with respect to an observation of repeated trials,
+  e.g., repeated rolls of a biased die:
+  \begin{itemize}
+  \item Relative frequency of 6 with a biased die after a sequence of 1000
+    rolls = $\frac{320}{1000} = 0.32$
+  \item After $10000$ rolls: 0.323.
+  \item After $100000$ rolls: 0.3231
+  \item etc.
+  \item Definition of the probability of getting a 6 with this die (von Mises):
+    \textbf{the limiting value of the relative frequency of 6 with respect to
+      an infinite sequence of rolls with this die.}
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{}
+  \begin{columns} 
+    \begin{column}{0.5\textwidth}    
+      some text here some text here some text here some text here some text
+      here
+    \end{column} 
+    \begin{column}{0.5\textwidth}       
+      \begin{figure}[p]
+        \caption{a}
+        % \includegraphics[width=0.5\textwidth]{test} %This is my picture
+      \end{figure}
+    \end{column} 
+  \end{columns} 
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Set the ``continuation'' text to null. Comment out if the bibliography
+% requires more than one slide. It is also possible to customise this text.
+%\setbeamertemplate{frametitle continuation}{}
+
+%\begin{frame}[plain,allowframebreaks,noframenumbering]{Works Cited}
+%%\frametitle{}
+%\def\newblock{}
+%\scriptsize
+%\bibliographystyle{apa-good}
+%\bibliography{Bibliography}{}
+%\end{frame}
+
+%\begin{frame}[plain,noframenumbering]
+%\frametitle{}
+%\vfill
+%{\LARGE \begin{center} \textbf{Thanks!} \end{center}}
+%\vfill
+%\end{frame}
+
+\end{document}

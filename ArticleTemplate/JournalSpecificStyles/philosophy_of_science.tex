@@ -1,0 +1,143 @@
+%%%% This template is customised for the style of the journal ``Philosophy of
+%%%% Science''. It should be used in conjunction with the file
+%%%% ChicagoReedWeb.bst available from http://www.michaelcuffaro.com/latex.shtml
+%%%%
+%%%% It is freely available for you to use.
+%%%%
+%%%% Copyright 2014, Michael Cuffaro.
+
+% one sided:
+\documentclass[12pt,english]{article}
+
+% for bibliography
+\usepackage{natbib}
+\usepackage{url}
+\makeatletter
+\def\url@leostyle{%
+  %\@ifundefined{selectfont}{
+    \def\UrlFont{\sf}}{\def\UrlFont{\small\ttfamily}}
+\makeatother
+\urlstyle{leo}
+
+% to have links to references etc.
+\usepackage[hidelinks]{hyperref}
+
+% for author affiliation
+\usepackage{authblk}
+
+% misc
+\usepackage{graphicx}
+\usepackage{babel}
+\usepackage{amsmath}
+
+\makeatletter
+\makeatother
+
+% Customisations specific to Philosophy of Science:
+
+% paper size, margins, etc:
+\usepackage{geometry}
+\geometry{verbose,letterpaper,tmargin=1.5in,bmargin=1.5in,lmargin=1.25in,rmargin=1in}
+
+% left justification:
+\raggedright
+
+% FONTS:
+
+% recommended if using accented characters in output:
+\usepackage[T1]{fontenc}
+
+% recommended if using accented characters in input:
+%\usepackage[latin1]{inputenc}
+
+% times roman fonts:
+\usepackage{txfonts}
+
+% spacing
+\usepackage{setspace}
+\doublespacing
+
+% footnotes
+\usepackage[]{footmisc}
+\renewcommand\footnotelayout{\normalsize\raggedright\doublespacing}
+\setlength{\footnotesep}{\baselineskip}
+
+% customisation of captions for figures
+\usepackage[font=normalsize,font=doublespacing,labelfont=bf,justification=raggedright]{caption}
+
+% no page numbers:
+\pagestyle{empty}
+
+% subsections should be italicised:
+\usepackage{titlesec}
+\titleformat*{\section}{\bf}
+\titleformat*{\subsection}{\it}
+\titleformat*{\subsubsection}{\it}
+
+% indentation
+\setlength\parindent{12pt}
+
+\begin{document}
+
+\title{Your title}
+%\author{Michael E. Cuffaro}
+\author{}
+%\affil{Ludwig-Maximilians-Universit\"at M\"unchen,
+%  Munich Center for Mathematical Philosophy}
+
+% add this for a custom date.
+% if commented out, today's date will be added.
+% if inside is blank, then no date will be shown i.e. \date{}
+%\date{Month DD, YYYY}
+\date{}
+
+\maketitle
+
+\thispagestyle{empty}
+
+\begin{abstract}
+This is your abstract. \\[12pt]
+\begin{center}\textbf{Word count:} 4,927.\end{center}
+\end{abstract}
+
+\pagebreak
+
+\section{Introduction to Your Paper}
+
+This is some text.\footnote{This is a footnote.}
+
+\section{Section Two}
+
+This is some text that refers to a publication \citep{hempel1948}.
+
+\subsection{Subsection Two One}
+
+This is some text.
+
+\subsubsection{Subsubsection Two One One}
+
+This is some text.
+
+\subsubsection{Subsubsection Two One Two}
+
+This is some text.
+
+\subsection{Subsection Two Two}
+
+This is some text.
+
+\section{Section Three}
+
+This is some text.
+
+\section{Conclusion}
+
+This is some text.
+
+% References are on a new page for PSA Submission:
+\pagebreak
+
+\bibliographystyle{ChicagoReedWeb}
+\bibliography{Bibliography}{}
+
+\end{document}

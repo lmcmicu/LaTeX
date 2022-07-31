@@ -1,0 +1,165 @@
+% one sided:
+\documentclass[12pt,english]{report}
+% two sided (for alternating headers it must be two-sided):
+%\documentclass[12pt,english,twoside]{article}
+
+% font:
+%\usepackage{times}
+%\usepackage[T1]{fontenc}
+%\usepackage[latin1]{inputenc}
+
+% for bibliography
+\usepackage{natbib}
+\usepackage{url}
+\makeatletter
+\def\url@leostyle{%
+  %\@ifundefined{selectfont}{
+    \def\UrlFont{\sf}}{\def\UrlFont{\small\ttfamily}}
+\makeatother
+\urlstyle{leo}
+
+% paper size, margins, etc:
+\usepackage{geometry}
+\geometry{verbose,letterpaper,tmargin=1in,bmargin=1in,lmargin=1.5in,rmargin=1in}
+
+% spacing
+\usepackage{setspace}
+
+% for footnotes in section headings
+\usepackage[stable]{footmisc}
+
+% spacing and justification for footnotes
+\renewcommand\footnotelayout{\raggedright\onehalfspacing}
+
+% headers
+\usepackage{fancyhdr}
+
+% customisation of captions for figures
+\usepackage[font=small,labelfont=bf,justification=raggedright]{caption}
+
+% to have links to references etc.
+%\usepackage{hyperref}
+
+% for author affiliation
+\usepackage{authblk}
+
+% appendix extra stuff
+\usepackage{appendix}
+
+% table of contents customisations:
+\usepackage{tocvsec2}
+
+% quantum circuit diagrams
+\input{Qcircuit}
+
+% misc
+\usepackage{graphicx}
+\usepackage{babel}
+\usepackage{mathrsfs}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{gensymb}
+\usepackage{units}
+
+% for code listings
+\usepackage{listings}
+\lstset{% general command to set parameter(s)
+  language=C,
+  basicstyle=\scriptsize,
+  keywordstyle=\color{black}\bfseries,
+  stringstyle=\ttfamily,
+  frameround=fttt,
+  showstringspaces=false
+}
+
+% for automata diagrams
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata}
+
+\makeatletter
+\makeatother
+
+% restart equation numbering after every section:
+\numberwithin{equation}{chapter}
+
+% to omit the line dividing the header from the body:
+\renewcommand{\headrulewidth}{0pt}
+\setlength\headheight{15pt}
+
+% left justification:
+\raggedright
+\parindent=1.5em
+
+\begin{document}
+
+\pagestyle{plain}
+\pagenumbering{roman}
+
+\include{Preamble}
+
+\newpage
+
+\tableofcontents
+
+%\listoffigures
+%\listoftables
+
+\newpage
+
+% the rest of the thesis has a different style from the preamble
+
+\pagenumbering{arabic}
+\onehalfspacing
+
+% redefine plain style (for chapter pages)
+\fancypagestyle{plain}{
+  \fancyhf{} % clear all header and footer fields
+  \rhead{\thepage}
+}
+
+% all other pages will use fancy style
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\thepage}
+
+\include{Chapters/Chapter1/chapter1}
+
+\include{Chapters/Chapter2/chapter2}
+
+\include{Chapters/Chapter3/chapter3}
+
+\include{Chapters/Chapter4/chapter4}
+
+\include{Chapters/Chapter5/chapter5}
+
+\include{Chapters/Chapter6/chapter6}
+
+\appendix
+\appendixpage
+
+\include{Appendices/appendix1}
+
+\include{Appendices/appendix2}
+
+\include{Appendices/appendix3}
+
+\include{Appendices/appendix4}
+
+\include{Appendices/appendix5}
+
+\include{Appendices/appendix6}
+
+\newpage
+
+\singlespacing
+
+\bibliographystyle{apa-good}
+\addcontentsline{toc}{chapter}{Bibliography}
+\bibliography{Bibliography}{}
+
+\newpage
+
+\addcontentsline{toc}{chapter}{Vita}
+\include{Vita}
+
+\end{document}

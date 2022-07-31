@@ -1,0 +1,179 @@
+%%%% This template is customised for edited volumes published with Cambridge
+%%%% University Press. It should be used in conjunction with the other files
+%%%% included in cup_volumes.zip available from
+%%%% http://www.michaelcuffaro.com/latex.shtml
+%%%%
+%%%% It is freely available for you to use.
+%%%%
+%%%% Copyright 2017, Michael Cuffaro.
+
+% one sided:
+\documentclass[12pt,english,twoside]{report}
+
+% for bibliography
+\usepackage{natbib}
+\usepackage{url}
+\makeatletter
+\def\url@leostyle{%
+  %\@ifundefined{selectfont}{
+    \def\UrlFont{\sf}}{\def\UrlFont{\small\ttfamily}}
+\makeatother
+\urlstyle{leo}
+
+\bibpunct
+{(} %the opening bracket symbol
+{)} %the closing bracket symbol
+{;} %the punctuation between multiple citations
+{a} %the letter `n' for numerical style, or `s' for numerical superscript style, any other letter for author-year
+{} %the punctuation that comes between the author names and the year
+{,} %the punctuation that comes between years or numbers when common author lists are suppressed
+
+% Extra citation commands. Note that these are only designed to work for one
+% citation key at a time. E.g., \citetcup{key1, key2} will *not* work.
+% ---
+% Usage: \citetcup{hughes1997}, result: Hughes ([1997])
+\newcommand{\citetcup}[1]{\citeauthor{#1} ([\citeyear{#1}])}
+% Usage: \citealtcup{hughes1997}, result: Hughes [1997]
+\newcommand{\citealtcup}[1]{\citeauthor{#1} [\citeyear{#1}]}
+% Usage: \citepcup{hughes1997}, result: (Hughes [1997])
+\newcommand{\citepcup}[1]{(\citeauthor{#1} [\citeyear{#1}])}
+% Usage: \citeyearcup{hughes1997}, result: [1997]
+\newcommand{\citeyearcup}[1]{[\citeyear{#1}]}
+% Usage: \citeyearparcup{hughes1997}, result: ([1997])
+\newcommand{\citeyearparcup}[1]{([\citeyear{#1}])}
+% Usage: \pcitetcup{hughes1997}{p. 77}, result: Hughes ([1997, p. 77])
+\newcommand{\pcitetcup}[2]{\citeauthor{#1} ([\citeyear{#1}, #2])}
+% Usage: \pcitealtcup{hughes1997}{p. 77}, result: Hughes [1997, p. 77]
+\newcommand{\pcitealtcup}[2]{\citeauthor{#1} [\citeyear{#1}, #2]}
+% Usage: \pcitepcup{hughes1997}{p. 77}, result: (Hughes [1997, p. 77])
+\newcommand{\pcitepcup}[2]{(\citeauthor{#1} [\citeyear{#1}, #2])}
+% Usage: \pciteyearcup{hughes1997}{p. 77}, result: [1997, p. 77]
+\newcommand{\pciteyearcup}[2]{[\citeyear{#1}, #2]}
+% Usage: \pciteyearparcup{hughes1997}{p. 77}, result: ([1997, p. 77])
+\newcommand{\pciteyearparcup}[2]{([\citeyear{#1}, #2])}
+
+% hidelinks removes surrounding boxes in ref links. breaklinks allows
+% line breaking for links. breakurl is specific to urls.
+\usepackage[hidelinks,breaklinks]{hyperref}
+\usepackage[hyphenbreaks]{breakurl}
+
+% paper size, margins, etc:
+\usepackage{geometry}
+\geometry{verbose,letterpaper,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+
+% table of contents customisations:
+\usepackage{tocstyle}
+\usetocstyle{standard}
+\settocfeature{raggedhook}{\raggedright}
+\settocfeature{leaders}{\hfill}
+
+\usepackage{tocvsec2}
+\usepackage{tocloft}
+\renewcommand{\cftdot}{}
+\usepackage{titlesec}
+\newcommand{\chapterauthor}{}
+\titleformat{\chapter}[display]
+            {\normalfont\bfseries\filcenter}
+            {\LARGE\thechapter}
+            {1pt}
+            {%\titlerule[2pt]
+              \vspace{5pt}%
+              \Large
+            }
+            [{\normalsize\normalfont \chapterauthor}
+              {
+                %\titlerule[2pt]
+              }
+            ]
+
+\titleformat*{\section}{\centering\bfseries}
+\titleformat*{\subsection}{\centering\it\bfseries}
+\titleformat*{\subsubsection}{\centering\it}
+
+% for chapter running titles and authors
+\usepackage{fancyhdr}
+
+% misc
+\usepackage{graphicx}
+\usepackage{babel}
+\usepackage[font={footnotesize,sf}]{subcaption}
+\usepackage[font={footnotesize,sf}]{caption}
+
+% FONTS:
+%-------
+% recommended if output will have accented characters:
+\usepackage[T1]{fontenc}
+%
+% recommended if inputting accented directly from the keyboard:
+%\usepackage[latin1]{inputenc}
+%\usepackage[utf8]{inputenc}
+%
+% Note: installing the cm-super package is recommended. Not doing so
+% may result in the compiled PDF file not being searchable.
+% Alternately you can specify one of the fonts below. 
+%\usepackage{charter} % bitstream charter
+%\usepackage[charter]{mathdesign} % bitstream charter including math
+%\usepackage{txfonts} % times roman
+\usepackage{lmodern} % computer modern
+
+% Improves spacing between letters and words
+% must be loaded after fonts
+\usepackage{microtype}
+
+% Need this for most math:
+\usepackage{amsmath}
+
+% restart equation numbering every chapter
+\numberwithin{equation}{chapter}
+
+% do not include chapter and section as part of equation number
+\renewcommand{\theequation}{\arabic{equation}}
+
+% always include chapter number in figure numbers (even for the introduction)
+\renewcommand\thefigure{\thechapter.\arabic{figure}}
+
+\begin{document}
+
+\pagenumbering{roman}
+\pagestyle{plain}
+
+\include{front_matter}
+
+\newpage
+
+\pagenumbering{arabic}
+\pagestyle{fancy}
+\setlength\headheight{15pt}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[CE]{\emph{\chapterauthor}}
+\fancyhead[CO]{\emph{\shortchaptertitle}}
+\fancyhead[L,R]{}
+
+% \shortchaptertitle will be redefined in every chapter using \renewcommand
+\newcommand{\shortchaptertitle}{}
+
+\addcontentsline{toc}{chapter}{Introduction}
+\include{intro}
+\settocdepth{section}
+\cftaddtitleline{toc}{section}{\emph{\chapterauthor}}{}
+
+\renewcommand*{\thepage}{}
+\part{The first part of the book}
+\renewcommand*{\thepage}{\arabic{page}}
+\include{chapter1}
+
+\renewcommand*{\thepage}{}
+\part{The second part of the book}
+\renewcommand*{\thepage}{\arabic{page}}
+\include{chapter2}
+
+\newpage
+
+\renewcommand{\chapterauthor}{}
+\renewcommand{\shortchaptertitle}{Bibliography}
+\fancyhead[C]{\emph{\shortchaptertitle}}
+\bibliographystyle{apa-good}
+\addcontentsline{toc}{chapter}{Bibliography}
+\bibliography{biblio}{}
+
+\end{document}
