@@ -1,5 +1,5 @@
 %%
-%% This is file `apa-ben.bst',
+%% This is a slightly modified version of the file `apa-ben.bst',
 %% generated with the docstrip utility.
 %%
 %% The original source files were:
