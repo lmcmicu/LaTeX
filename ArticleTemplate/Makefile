@@ -13,7 +13,7 @@ bibname = $(HOME)/texmf/bibtex/bib/Bibliography.bib
 #bibname = $(name).bib
 
 # ===================== Main targets =====================
-.PHONY: dvi ps pdf bib
+.PHONY: dvi ps pdf bib docx
 
 dvi: $(name).dvi
 
@@ -22,6 +22,8 @@ ps: $(name).ps
 pdf: $(name).pdf
 
 bib: $(name).bib
+
+docx: $(name).docx
 
 # The `bib` target makes a smaller bibliography file that only includes the references actually
 # cited in your .tex file. Note the following:
@@ -50,7 +52,7 @@ $(pics:.dia=.eps): $(pics)
 		dia --export=$$diafile.eps $$diafile.dia; \
 	done
 
-deps = $(name).tex $(bibname) $(pics:.dia=.eps)
+deps = $(name).tex $(pics:.dia=.eps)
 
 $(name).pdf: $(name).ps
 	# Use this first command to compile directly to .pdf
@@ -67,6 +69,9 @@ $(name).dvi: $(deps)
 
 $(name).bbl: $(deps)
 	latexmk $(name) -dvi- -ps- -pdf- -bibtex
+
+$(name).docx: $(deps)
+	pandoc -s $(name).tex --bibliography=$(bibname) -o $(name).docx
 
 # ===================== Diffs =====================
 .PHONY: rawdiff diffpdf difftex
@@ -126,7 +131,7 @@ cleanmore: cleansome
 	rm -f $(name).dvi $(name).ps
 
 clean: cleanmore
-	rm -f $(name).pdf $(name).ps $(name).dvi $(diffname)* $(pics:.dia=.eps) $(lastword $(MAKEFILE_LIST))~
+	rm -f $(name).docx $(name).pdf $(name).ps $(name).dvi $(diffname)* $(pics:.dia=.eps) $(lastword $(MAKEFILE_LIST))~
 	rm -Rf auto
 
 cleandiff:
