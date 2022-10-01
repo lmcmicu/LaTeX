@@ -14,8 +14,34 @@
 \def\url@leostyle{%
   %\@ifundefined{selectfont}{
     \def\UrlFont{\sf}}{\def\UrlFont{\small\ttfamily}}
+% The below \renewcommand call hides section numbers in section titles, but still generates
+% labels for them. This is useful when using pandoc to convert to docx, since it doesn't
+% preserve section numbering. The hack is to redefine the \@seccntformat below and then in
+% every section, explicitly add the reference to the number before the section title. E.g.,
+%   \section{\ref{s:intro} Introduction}
+%   \label{s:intro}
+% Note that this doesn't change anything for subsections, but there is probably a similar
+% command that we can redefine; I just haven't looked it up.
+% 
+% \renewcommand{\@seccntformat}[1]{}
 \makeatother
 \urlstyle{leo}
+
+% \bibpunct
+% [] % the character preceding a post-note (page number, etc.), default is a comma plus space. In redefining this character, one must include a space if one is wanted.
+% {(} %the opening bracket symbol
+% {)} %the closing bracket symbol
+% {,} %the punctuation between multiple citations
+% {a} %the letter `n' for numerical style, or `s' for numerical superscript style, any other letter for author-year
+% {} %the punctuation that comes between the author names and the year
+% {;} %the punctuation that comes between years or numbers when common author lists are suppressed
+
+% To use endnotes instead of footnotes.
+% -----
+% The second command below overrides every invocation of \footnote{} so that it results in an endnote instead, so if you want the ability to use both, keep the second command below commented out. Note also that to actually display the endnotes in the compiled text, you must add the command, \theendnotes, somewhere in your code (usually right before your references).
+%
+% \usepackage{endnotes}
+% \renewcommand{\footnote}[1]{\endnote{#1}}
 
 % paper size, margins, etc:
 \usepackage{geometry}
@@ -146,19 +172,26 @@
 % for nicer fractions
 \usepackage{nicefrac}
 
+% To ignore blocks of code. This is useful when you would like to ignore comments
+% in your wordcounts (see below).
+\newcommand{\ignore}[1]{}
+
 % For comments in PDF
 \usepackage{color}
 \newcommand{\comment}[1] {%
   {\color{blue} [#1]}%
+  % {\color{blue} \ignore{[#1]}}%
 }
 
 % Co-author comments
 \usepackage{color}
 \newcommand{\mike}[1] {%
   {\color{blue} [MC: #1]}%
+  % {\color{blue} \ignore{[MC: #1]}}%
 }
 \newcommand{\markus}[1] {%
   {\color{red} [MM: #1]}%
+  % {\color{red} \ignore{[MM: #1]}}%
 }
 
 % To generate dummy text

@@ -58,6 +58,7 @@
 \urlstyle{leo}
 
 \bibpunct
+% [] % the character preceding a post-note (page number, etc.), default is a comma plus space. In redefining this character, one must include a space if one is wanted.
 {(} %the opening bracket symbol
 {)} %the closing bracket symbol
 {,} %the punctuation between multiple citations
@@ -104,8 +105,8 @@
 
 % BJPS specific cite commands.
 % ----
-% Two-argument versions
-% Example: \pcitetbjps[p. 97]{hughes1997}
+% One-argument versions
+% Usage example: \citetbjps[p. 97]{hughes1997}
 \newcommand{\citetbjps}[2][]{\ifthenelse{\equal{#1}{}}{\citeauthor{#2} ([\citeyear{#2}])}{\citeauthor{#2} ([\citeyear{#2}], #1)}}
 \newcommand{\citealtbjps}[2][]{\ifthenelse{\equal{#1}{}}{\citeauthor{#2} [\citeyear{#2}]}{\citeauthor{#2} [\citeyear{#2}], #1}}
 \newcommand{\citepbjps}[2][]{\ifthenelse{\equal{#1}{}}{(\citeauthor{#2} [\citeyear{#2}])}{(\citeauthor{#2} [\citeyear{#2}], #1)}}
@@ -114,9 +115,8 @@
 \newcommand{\citeposbjps}[2][]{\ifthenelse{\equal{#1}{}}{\citeauthor{#2}'s ([\citeyear{#2}])}{\citeauthor{#2}'s ([\citeyear{#2}], #1)}}
 
 % ----
-% Single-argument versions (these should not be needed, but they are provided
-% just in case they are needed highly idiosyncratic references)
-% Example: \citetbjps{hughes1997}
+% Zero-argument versions
+% Usage example: \citetbjps{hughes1997}
 \newcommand{\citetbjpssingle}[1]{\citeauthor{#1} ([\citeyear{#1}])}
 \newcommand{\citealtbjpssingle}[1]{\citeauthor{#1} [\citeyear{#1}]}
 \newcommand{\citepbjpssingle}[1]{(\citeauthor{#1} [\citeyear{#1}])}

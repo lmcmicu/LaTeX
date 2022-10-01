@@ -71,7 +71,7 @@ $(name).bbl: $(deps)
 	latexmk $(name) -dvi- -ps- -pdf- -bibtex
 
 $(name).docx: $(deps)
-	pandoc -s $(name).tex --bibliography=$(bibname) -o $(name).docx
+	pandoc --standalone $(name).tex --bibliography=$(bibname) -M reference-section-title=References -o $(name).docx
 
 # ===================== Diffs =====================
 .PHONY: rawdiff diffpdf difftex
@@ -102,7 +102,7 @@ $(diffname).tex: $(name).tex $(deps)
 	# black. It won't be as nice but it will still work fine.
 	#
 	# To run the diff against a particular REF (e.g, "HEAD"), run like:
-	# make ldiff REF=HEAD
+	# make difftex REF=HEAD
 	git ldiff $(REF) $(name).tex > $(diffname).tex
 
 # ===================== Wordcounts =====================
@@ -124,7 +124,7 @@ wcpdf: $(name).pdf
 .PHONY: cleansome cleanmore clean cleandiff cleanpdf cleanps cleanbib
 
 cleansome:
-	rm -f $(name).fls $(name).blg $(name).bbl $(name).log $(name).aux $(name).nav $(name).out $(name).snm $(name).toc $(name).fdb_latexmk $(name)*vrb *eps-converted-to.pdf $(name)*~
+	rm -f $(name).ent $(name).fls $(name).blg $(name).bbl $(name).log $(name).aux $(name).nav $(name).out $(name).snm $(name).toc $(name).fdb_latexmk $(name)*vrb *eps-converted-to.pdf $(name)*~
 	rm -Rf auto
 
 cleanmore: cleansome
@@ -142,6 +142,9 @@ cleanpdf:
 
 cleanps:
 	rm -f $(name).ps
+
+cleandvi:
+	rm -f $(name).dvi
 
 cleanbib:
 	rm -f $(name).bib
