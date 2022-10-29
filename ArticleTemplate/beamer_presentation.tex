@@ -2,10 +2,6 @@
 % use the handout option to collapse delay elements (uncover, only, etc).
 %\documentclass[handout]{beamer}
 
-\setbeameroption{hide notes}
-%\setbeameroption{show notes}
-%\setbeameroption{show only notes}
-
 % remove navigation markers
 \setbeamertemplate{navigation symbols}{}
 
@@ -14,9 +10,6 @@
 
 % include frame numbers at the bottom of the frame
 \setbeamertemplate{footline}[frame number]
-
-% plain notes
-\setbeamertemplate{note page}[plain]
 
 % good plain jane themes:
 \usetheme{default}
@@ -37,6 +30,24 @@
 
 % for bibliography:
 \usepackage{natbib}
+
+% Customised note page:
+\setbeamertemplate{note page}{%
+  {\scriptsize \mbox{}\\[6pt] \hfill Notes for slide \insertframenumber \\[2pt] \hrule}
+  {\small \insertnote}
+}
+% Other ready-made note page templates:
+% \setbeamertemplate{note page}[default]
+% \setbeamertemplate{note page}[compress]
+% \setbeamertemplate{note page}[lined]
+% For more options see section 19 of the beamer user guide:
+% http://tug.ctan.org/macros/latex/contrib/beamer/doc/beameruserguide.pdf
+
+% Note that this must be set after including natbib otherwise you will get a compile error
+% (see https://github.com/josephwright/beamer/issues/158)
+% \setbeameroption{hide notes}
+\setbeameroption{show notes}
+% \setbeameroption{show only notes}
 
 % font:
 \usepackage{euler} % for ``blackboard'' style math fonts
@@ -181,12 +192,16 @@
 
 % Extra highlighting commands
 \usepackage{color}
+
 \newcommand{\shade}[1] {%
   {\color{medgrey} #1}}
 
-\usepackage{color}
 \newcommand{\lightshade}[1] {%
   {\color{lightgrey} #1}}
+
+\newcommand{\notealert}[1] {%
+  {\color{blue} #1}}
+
 
 \begin{document}
 

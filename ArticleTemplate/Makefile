@@ -124,15 +124,14 @@ wcpdf: $(name).pdf
 .PHONY: cleansome cleanmore clean cleandiff cleanpdf cleanps cleanbib
 
 cleansome:
-	rm -f $(name).ent $(name).fls $(name).blg $(name).bbl $(name).log $(name).aux $(name).nav $(name).out $(name).snm $(name).toc $(name).fdb_latexmk $(name)*vrb *eps-converted-to.pdf $(name)*~
+	rm -f $(name).ent $(name).fls $(name).blg $(name).bbl $(name).log $(name).aux $(name).nav $(name).out $(name).snm $(name).toc $(name).fdb_latexmk $(name)*vrb *eps-converted-to.pdf $(diffname)* $(pics:.dia=.eps) $(lastword $(MAKEFILE_LIST))~ $(name)*~
 	rm -Rf auto
 
 cleanmore: cleansome
 	rm -f $(name).dvi $(name).ps
 
 clean: cleanmore
-	rm -f $(name).docx $(name).pdf $(name).ps $(name).dvi $(diffname)* $(pics:.dia=.eps) $(lastword $(MAKEFILE_LIST))~
-	rm -Rf auto
+	rm -f $(name).docx $(name).pdf
 
 cleandiff:
 	rm -f $(diffname)*
