@@ -52,7 +52,7 @@ $(pics:.dia=.eps): $(pics)
 		dia --export=$$diafile.eps $$diafile.dia; \
 	done
 
-deps = $(name).tex $(pics:.dia=.eps)
+deps = $(name).tex $(bibname) $(pics:.dia=.eps)
 
 $(name).pdf: $(name).ps
 	# Use this first command to compile directly to .pdf

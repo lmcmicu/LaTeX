@@ -286,6 +286,13 @@
 % Date and time (the datetime package is required; comment it out above):
 % \date{\today ~ \currenttime}
 
+% These are used to pass options to texcount. Here we are telling it not to ignore citations in word counts: 
+%TC:macro \citep [option:text,option:text,text,text]
+%TC:macro \citet [option:text,option:text,text,text]
+%TC:macro \citealt [option:text,text,text]
+%TC:macro \citeauthor [option:text,text,text]
+%TC:macro \citeyearpar [option:text,text,text]
+
 \begin{document}
 
 \maketitle
