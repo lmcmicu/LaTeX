@@ -155,6 +155,9 @@
 % for customised enumerates and itemizes
 \usepackage{enumitem}
 
+% To omit the horizontal line before footnotes:
+\renewcommand{\footnoterule}{}
+
 % useful fraction macros
 \newcommand\frachalf{%
   \frac{1}{2}}
@@ -202,6 +205,8 @@
 \newcommand{\notealert}[1] {%
   {\color{blue} #1}}
 
+% Set the footnote size
+\setbeamerfont{footnote}{size=\tiny}
 
 \begin{document}
 

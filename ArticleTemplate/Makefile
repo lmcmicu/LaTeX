@@ -30,7 +30,9 @@ docx: $(name).docx
 #
 # Note 1: There is no dependency on the .dvi file here since adding a dependency on the .dvi
 # would be circular. Just make sure to run `make dvi` first before generating a new .bib
-# file, since `bibexport` requires a .bbl file.
+# file, since `bibexport` requires a .bbl file. We are not adding a dependency on the .bbl,
+# though, since if we do then the bibliography will unnecessarily have to be recreated everytime
+# the .bbl file is changed, and this isn't necessary.
 #
 # Note 2: The name specified in the \bibliography{...}{} directive in your .tex file must be
 # the _source_ bibliography and not the target bibliography. Once the target is generated you
@@ -39,7 +41,7 @@ docx: $(name).docx
 # Note 3: Before compiling your .tex file using the target bibliography, make sure to change
 # the definition of `bibname` above (i.e., in this Makefile).
 
-$(name).bib: $(name).bbl
+$(name).bib:
 	bibexport -o $(name).bib $(name).aux
 	bibsort.sh < $(name).bib > /tmp/$(name).sorted.bib
 	mv -f /tmp/$(name).sorted.bib $(name).bib

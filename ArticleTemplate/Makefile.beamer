@@ -9,8 +9,10 @@ name = beamer_presentation
 bibname = $(HOME)/texmf/bibtex/bib/Bibliography.bib
 # bibname = $(name).bib
 diapics := $(wildcard *.dia)
-pics := $(wildcard *.eps)
-deps = $(name).tex $(bibname) $(diapics:.dia=.eps) $(pics)
+epspics := $(wildcard *.eps)
+pngpics := $(wildcard *.png)
+jpgpics := $(wildcard *.jpg)
+deps = $(name).tex $(bibname) $(diapics:.dia=.eps) $(pngpics:.png=.eps) $(jpgpics:.jpg=.eps) $(epspics)
 
 .PHONY: pdf ps dvi bib
 
@@ -45,6 +47,18 @@ $(diapics:.dia=.eps): $(diapics)
 		dia --export=$$diafile.eps $$diafile.dia; \
 	done
 
+$(pngpics:.png=.eps): $(pngpics)
+	for pngfile in $(pngpics:.png=); \
+	do \
+		convert $$pngfile.png $$pngfile.eps; \
+	done
+
+$(jpgpics:.jpg=.eps): $(jpgpics)
+	for jpgfile in $(jpgpics:.jpg=); \
+	do \
+		convert $$jpgfile.jpg $$jpgfile.eps; \
+	done
+
 .PHONY: cleansome cleanmore cleanbib clean
 
 cleanbib:
@@ -55,7 +69,7 @@ cleansome:
 	rm -Rf auto
 
 cleanmore: cleansome
-	rm -f $(name).dvi $(name).ps *eps-converted-to*.pdf $(diapics:.dia=.eps) $(name).bib-save* $(lastword $(MAKEFILE_LIST))~
+	rm -f $(name).dvi $(name).ps *eps-converted-to*.pdf $(diapics:.dia=.eps) $(pngpics:.png=.eps) $(jpgpics:.jpg=.eps) $(name).bib-save* $(lastword $(MAKEFILE_LIST))~
 
 clean: cleanmore
 	rm -f $(name).pdf $(name).ps $(name).dvi
