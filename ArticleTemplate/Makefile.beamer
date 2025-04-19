@@ -8,10 +8,10 @@ SHELL := bash
 name = beamer_presentation
 bibname = $(HOME)/texmf/bibtex/bib/Bibliography.bib
 # bibname = $(name).bib
-diapics := $(wildcard *.dia)
-epspics := $(wildcard *.eps)
-pngpics := $(wildcard *.png)
-jpgpics := $(wildcard *.jpg)
+diapics := $(wildcard Graphics/*.dia)
+epspics := $(wildcard Graphics/*.eps)
+pngpics := $(wildcard Graphics/*.png)
+jpgpics := $(wildcard Graphics/*.jpg)
 deps = $(name).tex $(bibname) $(diapics:.dia=.eps) $(pngpics:.png=.eps) $(jpgpics:.jpg=.eps) $(epspics)
 
 .PHONY: pdf ps dvi bib
@@ -59,7 +59,13 @@ $(jpgpics:.jpg=.eps): $(jpgpics)
 		convert $$jpgfile.jpg $$jpgfile.eps; \
 	done
 
-.PHONY: cleansome cleanmore cleanbib clean
+.PHONY: cleansome cleanmore cleanbib clean cleanps cleanpdf
+
+cleanps:
+	rm -f $(name).ps
+
+cleanpdf:
+	rm -f $(name).pdf
 
 cleanbib:
 	rm -f $(name).bib

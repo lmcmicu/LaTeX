@@ -111,10 +111,10 @@ $(diffname).tex: $(name).tex $(deps)
 .PHONY: wc wcdvi wcpdf
 
 wc:
-	texcount -sum $(name).tex
+	texcount -inc -sum $(name).tex
 
 wcbib: $(name).bbl
-	texcount -incbib -sum $(name).tex
+	texcount -inc -incbib -sum $(name).tex
 
 wcdvi: $(name).dvi
 	catdvi $(name).dvi | wc -w

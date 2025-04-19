@@ -1,11 +1,13 @@
 % Nag package checks for obsolete commands, syntax, etc.
+% You should run this when compiling a file for the first time, but it is recommended to comment
+% it out once nag has been satisfied since performing the check adds compilation time.
 % Output written in .log file
 \RequirePackage[l2tabu]{nag}
 
 % one sided:
-%\documentclass[12pt,english]{article}
+\documentclass[12pt,english]{article}
 % two sided (for alternating headers it must be two-sided):
-\documentclass[12pt,english,twoside]{article}
+% \documentclass[12pt,english,twoside]{article}
 
 % for bibliography
 \usepackage[longnamesfirst]{natbib}
@@ -28,12 +30,12 @@
 \urlstyle{leo}
 
 % \bibpunct
-% [] % the character preceding a post-note (page number, etc.), default is a comma plus space. In redefining this character, one must include a space if one is wanted.
+% [, ] % the character preceding a post-note (page number, etc.), default is a comma plus space. In redefining this character, one must include a space if one is wanted.
 % {(} %the opening bracket symbol
 % {)} %the closing bracket symbol
 % {,} %the punctuation between multiple citations
 % {a} %the letter `n' for numerical style, or `s' for numerical superscript style, any other letter for author-year
-% {} %the punctuation that comes between the author names and the year
+% {,} %the punctuation that comes between the author names and the year
 % {;} %the punctuation that comes between years or numbers when common author lists are suppressed
 
 % To use endnotes instead of footnotes.
@@ -47,18 +49,18 @@
 \usepackage{geometry}
 \geometry{verbose,a4paper,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
 
-% headers
-\usepackage{fancyhdr}
-\pagestyle{fancy}
+% Fancy headers
+% \usepackage{fancyhdr}
+% \pagestyle{fancy}
 
-% line numbers
-%\usepackage{lineno}
-%\linenumbers
+% Line numbers
+\usepackage{lineno}
+\linenumbers
 
-% allows you to create tables without vertical separators
-%\usepackage{booktabs}
+% Allows you to create tables without vertical separators
+% \usepackage{booktabs}
 
-% customisation of captions for figures
+% Use a smaller point for figure captions
 \usepackage[font=small,labelfont=bf]{caption}
 
 % hidelinks removes surrounding boxes in ref links. breaklinks allows
@@ -70,99 +72,24 @@
 \usepackage{authblk}
 
 % spacing
-%\usepackage{setspace}
-%\doublespacing
-%\singlespacing
-
-% quantum circuit diagrams
-\usepackage{qcircuit}
-
-\newcommand\xgatefull{%
-  \Qcircuit @C=1.5em @R=.8em @! {
-    \lstick{| 0 \rangle} & \gate{X} & \rstick{| 1 \rangle} \qw \\
-    \lstick{| 1 \rangle} & \gate{X} & \rstick{| 0 \rangle} \qw}}
-
-\newcommand\ygatefull{%
-  \Qcircuit @C=1.5em @R=.8em @! {
-    \lstick{| 0 \rangle} & \gate{Y} & \rstick{i| 1 \rangle} \qw \\
-    \lstick{| 1 \rangle} & \gate{Y} & \rstick{-i| 0 \rangle} \qw}}
-
-\newcommand\zgatefull{%
-  \Qcircuit @C=1.5em @R=.8em @! {
-    \lstick{| 0 \rangle} & \gate{Z} & \rstick{| 0 \rangle} \qw \\
-    \lstick{| 1 \rangle} & \gate{Z} & \rstick{-| 1 \rangle} \qw}}
-
-\newcommand\rphasegatefull{%
-  \Qcircuit @C=1.5em @R=.8em @! {
-    \lstick{| 0 \rangle} & \gate{R} & \rstick{| 0 \rangle} \qw \\
-    \lstick{| 1 \rangle} & \gate{R} & \rstick{i| 1 \rangle} \qw}}
-
-\newcommand\sphasegatefull{%
-  \Qcircuit @C=1.5em @R=.8em @! {
-    \lstick{| 0 \rangle} & \gate{S} & \rstick{| 0 \rangle} \qw \\
-    \lstick{| 1 \rangle} & \gate{S} & \rstick{e^{i\pi/4}| 1 \rangle} \qw}}
-
-\newcommand\hgatefull{%
-  \Qcircuit @C=1.5em @R=.8em @! {
-    \lstick{| 0 \rangle} & \gate{H} & \rstick{\frac{| 0 \rangle + | 1 \rangle}{\sqrt 2}} \qw \\
-    \lstick{| 1 \rangle} & \gate{H} & \rstick{\frac{| 0 \rangle - | 1 \rangle}{\sqrt 2}} \qw}}
-
-\newcommand\igate{%
-  \Qcircuit @C=0.1em @R=.1em @! {
-    & \gate{I} & \qw}}
-
-\newcommand\xgate{%
-  \Qcircuit @C=0.1em @R=.1em @! {
-    & \gate{X} & \qw}}
-
-\newcommand\ygate{%
-  \Qcircuit @C=0.1em @R=.1em @! {
-    & \gate{Y} & \qw}}
-
-\newcommand\zgate{%
-  \Qcircuit @C=0.1em @R=.1em @! {
-    & \gate{Z} & \qw}}
-
-\newcommand\rphasegate{%
-  \Qcircuit @C=0.1em @R=.1em @! {
-    & \gate{R} & \qw}}
-
-\newcommand\sphasegate{%
-  \Qcircuit @C=0.1em @R=.1em @! {
-    & \gate{S} & \qw}}
-
-\newcommand\hgate{%
-  \Qcircuit @C=0.1em @R=.1em @! {
-    & \gate{H} & \qw}}
-
-\newcommand\cnotgate{%
-  \Qcircuit @C=.1em @R=.1em @! {
-    & \ctrl{1} & \qw \\
-    & \targ & \qw}}
-
-\newcommand\toffoligate{%
-  \Qcircuit @C=.2em @R=.2em @! {
-    & \ctrl{1} & \qw \\
-    & \ctrl{1} & \qw \\
-    & \targ & \qw}}
-
-\newcommand\measgate{%
-  \Qcircuit @C=1.5em @R=.8em @! {
-    & \meter}}
-
-% For some reason, arXiv needs this (possibly it is no longer necessary):
-% \renewcommand{\Qcircuit}[1][0em]{\xymatrix @*=<#1>}
+% \usepackage{setspace}
+% \doublespacing
+% \singlespacing
+ 
+% Uncomment this statement, and then copy the file qcircuit_custom_commands.tex from ArticleTemplates/
+% to the current working directory to support working with quantum circuit diagrams
+% \include{qcircuit_custom_commands}
 
 % for customised enumerates and itemizes
-\usepackage{enumitem}
+% \usepackage{enumitem}
 
 % more or less indispensable when using math
 \usepackage{amsmath}
 
-% Usually you will want this as well
+% Usually you will want this as well when using math
 \usepackage{amssymb}
 
-% useful fraction macros
+% Some useful fraction macros
 \newcommand\frachalf{%
   \frac{1}{2}}
 
@@ -170,10 +97,11 @@
   \textstyle{\frac{1}{\sqrt 2}}}
 
 % for nicer fractions
-\usepackage{nicefrac}
+% \usepackage{nicefrac}
 
 % To ignore blocks of code. This is useful when you would like to ignore comments
-% in your wordcounts (see below).
+% in your (compiled) wordcounts (see below). To ignore them at the .tex level
+% you must use a %TC directive (see below).
 \newcommand{\ignore}[1]{}
 
 % For comments in PDF
@@ -184,21 +112,39 @@
 }
 
 % Co-author comments
-\usepackage{color}
-\newcommand{\mike}[1] {%
-  {\color{blue} [MC: #1]}%
-  % {\color{blue} \ignore{[MC: #1]}}%
-}
-\newcommand{\markus}[1] {%
-  {\color{red} [MM: #1]}%
-  % {\color{red} \ignore{[MM: #1]}}%
+% \usepackage{color}
+% \newcommand{\mike}[1] {%
+%   {\color{blue} [MC: #1]}%
+%   % {\color{blue} \ignore{[MC: #1]}}%
+% }
+% \newcommand{\stephan}[1] {%
+%   {\color{red} [MM: #1]}%
+%   % {\color{red} \ignore{[MM: #1]}}%
+% }
+% \newcommand{\markus}[1] {%
+%   {\color{red} [MM: #1]}%
+%   % {\color{red} \ignore{[MM: #1]}}%
+% }
+
+% Useful macro that allows you to save the value of a variable. E.g.:
+%   \setvalue{\myvar}{5}
+%   \setvalue{\savedpage}{\thepage}
+% Then you can refer to the variable simply by name from that point forward:
+%   \savedpage
+%   \myvar
+\newcommand{\setvalue}[2]{
+  \ifdefined #1
+    \renewcommand{#1}{#2}
+  \else
+    \newcommand{#1}{#2}
+  \fi
 }
 
 % To generate dummy text
 % \usepackage{lipsum}
 
 % handy package when using units in scientific papers
-%\usepackage{siunitx}
+% \usepackage{siunitx}
 
 % FONTS:
 %-------
@@ -259,11 +205,12 @@
 % Document title and other header elements:
 \newcommand{\documentTitle}{My Title}
 
-\fancyhead[CO]{\emph{M. E. Cuffaro}}
-\fancyhead[CE]{\emph{\documentTitle}}
-\fancyhead[L,R]{}
-\setlength\headheight{15pt}
-\renewcommand{\headrulewidth}{0pt}
+% Set these when using fancy headers (enable the fancyhdr package above)
+% \fancyhead[CO]{\emph{M. E. Cuffaro}}
+% \fancyhead[CE]{\emph{\documentTitle}}
+% \fancyhead[L,R]{}
+% \setlength\headheight{15pt}
+% \renewcommand{\headrulewidth}{0pt}
 
 % To show compile time on the title page, use one of these:
 % \usepackage[yyyymmdd,hhmmss]{datetime}
@@ -286,12 +233,16 @@
 % Date and time (the datetime package is required; comment it out above):
 % \date{\today ~ \currenttime}
 
-% These are used to pass options to texcount. Here we are telling it not to ignore citations in word counts: 
+% These are used to pass options to texcount. Here we are telling it not to ignore citations in word counts, and to ignore comments:
 %TC:macro \citep [option:text,option:text,text,text]
 %TC:macro \citet [option:text,option:text,text,text]
 %TC:macro \citealt [option:text,text,text]
 %TC:macro \citeauthor [option:text,text,text]
 %TC:macro \citeyearpar [option:text,text,text]
+%TC:macro \comment [ignore]
+%TC:macro \mike [ignore]
+%TC:macro \stephan [ignore]
+
 
 \begin{document}
 
@@ -339,9 +290,7 @@ For new readers \citep{Salmon1989}, the idea is that if we are to take fully ser
 %\includegraphics[scale=0.5]{norel}
 %\end{quotation}
 
-
 \bibliographystyle{apa-good}
 \bibliography{Bibliography}{}
-
 
 \end{document}
