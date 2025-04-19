@@ -12,6 +12,13 @@ diffname = $(name)-diff
 bibname = $(HOME)/texmf/bibtex/bib/Bibliography.bib
 #bibname = $(name).bib
 
+epspics := $(wildcard Graphics/*.eps)
+pngpics := $(wildcard Graphics/*.png)
+jpgpics := $(wildcard Graphics/*.jpg)
+diapics := $(wildcard Graphics/*.dia)
+
+deps = $(name).tex $(bibname) $(diapics:.dia=.eps) $(pngpics:.png=.eps) $(jpgpics:.jpg=.eps) $(epspics)
+
 # ===================== Main targets =====================
 .PHONY: dvi ps pdf bib docx
 
@@ -46,15 +53,11 @@ $(name).bib:
 	bibsort.sh < $(name).bib > /tmp/$(name).sorted.bib
 	mv -f /tmp/$(name).sorted.bib $(name).bib
 
-pics := $(wildcard *.dia)
-
-$(pics:.dia=.eps): $(pics)
-	for diafile in $(pics:.dia=); \
+$(diapics:.dia=.eps): $(diapics)
+	for diafile in $(diapics:.dia=); \
 	do \
 		dia --export=$$diafile.eps $$diafile.dia; \
 	done
-
-deps = $(name).tex $(bibname) $(pics:.dia=.eps)
 
 $(name).pdf: $(name).ps
 	# Use this first command to compile directly to .pdf
