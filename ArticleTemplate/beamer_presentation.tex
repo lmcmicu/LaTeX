@@ -22,7 +22,7 @@
 % good theme for side bar
 %\usetheme{Marburg}
 
-% change emphasis to underline, plus other useful functions
+% Allows change emphasis to underline, plus other useful functions. Currently set to normal emphasis.
 \usepackage[normalem]{ulem}
 
 % for nicer columns than the default
@@ -73,84 +73,10 @@
 % for customised enumerates and itemizes
 \usepackage{enumitem}
 
-% quantum circuit diagrams
-\usepackage{qcircuit}
-
-\newcommand\xgatefull{%
-  \Qcircuit @C=1.5em @R=.8em @! {
-    \lstick{| 0 \rangle} & \gate{X} & \rstick{| 1 \rangle} \qw \\
-    \lstick{| 1 \rangle} & \gate{X} & \rstick{| 0 \rangle} \qw}}
-
-\newcommand\ygatefull{%
-  \Qcircuit @C=1.5em @R=.8em @! {
-    \lstick{| 0 \rangle} & \gate{Y} & \rstick{i| 1 \rangle} \qw \\
-    \lstick{| 1 \rangle} & \gate{Y} & \rstick{-i| 0 \rangle} \qw}}
-
-\newcommand\zgatefull{%
-  \Qcircuit @C=1.5em @R=.8em @! {
-    \lstick{| 0 \rangle} & \gate{Z} & \rstick{| 0 \rangle} \qw \\
-    \lstick{| 1 \rangle} & \gate{Z} & \rstick{-| 1 \rangle} \qw}}
-
-\newcommand\rphasegatefull{%
-  \Qcircuit @C=1.5em @R=.8em @! {
-    \lstick{| 0 \rangle} & \gate{R} & \rstick{| 0 \rangle} \qw \\
-    \lstick{| 1 \rangle} & \gate{R} & \rstick{i| 1 \rangle} \qw}}
-
-\newcommand\sphasegatefull{%
-  \Qcircuit @C=1.5em @R=.8em @! {
-    \lstick{| 0 \rangle} & \gate{S} & \rstick{| 0 \rangle} \qw \\
-    \lstick{| 1 \rangle} & \gate{S} & \rstick{e^{i\pi/4}| 1 \rangle} \qw}}
-
-\newcommand\hgatefull{%
-  \Qcircuit @C=1.5em @R=.8em @! {
-    \lstick{| 0 \rangle} & \gate{H} & \rstick{\frac{| 0 \rangle + | 1 \rangle}{\sqrt 2}} \qw \\
-    \lstick{| 1 \rangle} & \gate{H} & \rstick{\frac{| 0 \rangle - | 1 \rangle}{\sqrt 2}} \qw}}
-
-\newcommand\igate{%
-  \Qcircuit @C=0.1em @R=.1em @! {
-    & \gate{I} & \qw}}
-
-\newcommand\xgate{%
-  \Qcircuit @C=0.1em @R=.1em @! {
-    & \gate{X} & \qw}}
-
-\newcommand\ygate{%
-  \Qcircuit @C=0.1em @R=.1em @! {
-    & \gate{Y} & \qw}}
-
-\newcommand\zgate{%
-  \Qcircuit @C=0.1em @R=.1em @! {
-    & \gate{Z} & \qw}}
-
-\newcommand\rphasegate{%
-  \Qcircuit @C=0.1em @R=.1em @! {
-    & \gate{R} & \qw}}
-
-\newcommand\sphasegate{%
-  \Qcircuit @C=0.1em @R=.1em @! {
-    & \gate{S} & \qw}}
-
-\newcommand\hgate{%
-  \Qcircuit @C=0.1em @R=.1em @! {
-    & \gate{H} & \qw}}
-
-\newcommand\cnotgate{%
-  \Qcircuit @C=.1em @R=.1em @! {
-    & \ctrl{1} & \qw \\
-    & \targ & \qw}}
-
-\newcommand\toffoligate{%
-  \Qcircuit @C=.2em @R=.2em @! {
-    & \ctrl{1} & \qw \\
-    & \ctrl{1} & \qw \\
-    & \targ & \qw}}
-
-\newcommand\measgate{%
-  \Qcircuit @C=1.5em @R=.8em @! {
-    & \meter}}
-
-% For some reason, arXiv needs this (possibly it is no longer necessary):
-% \renewcommand{\Qcircuit}[1][0em]{\xymatrix @*=<#1>}
+% To support working with quantum circuit diagrams, uncomment the statement below and then copy
+% the file qcircuit_custom_commands.tex from the ArticleTemplates/ folder
+% to the current working directory or somewhere else visible to latex.
+% \include{qcircuit_custom_commands}
 
 % To omit the horizontal line before footnotes:
 \renewcommand{\footnoterule}{}
